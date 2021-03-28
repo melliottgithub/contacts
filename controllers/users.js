@@ -1,5 +1,4 @@
 const model = require('../models');
-// console.log('hi');
 
 module.exports = {
   async post(req, res, next) {
