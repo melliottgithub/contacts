@@ -1,7 +1,19 @@
-const mongoose = require('mongoose');
+const User = require('../database');
 
-const userSchema = new mongoose.Schema({ contactId: Number });
-
-const User = mongoose.model('User', userSchema);
-
-module.exports = User;
+module.exports = {
+  async createNewUser(params) {
+    try {
+      const data = await User.create(up);
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  async getAllUsers(callback) {
+    try {
+      const user = await User.find({});
+      callback(user);
+    } catch (err) {
+      console.log(err);
+    }
+  },
+};

@@ -1,1 +1,2 @@
-exports.users = require('./users')
+module.exports = require('./users');
+module.exports = require('./contacts');

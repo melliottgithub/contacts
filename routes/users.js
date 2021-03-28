@@ -1,6 +1,8 @@
 const controller = require('../controllers');
 const router = require('express').Router();
 
-router.post('/users', controller.users.post);
+router.route('/users')
+    .post(controller.users.post)
+    .get(controller.users.get);
 
 module.exports = router;

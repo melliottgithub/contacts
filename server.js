@@ -1,20 +1,17 @@
 const express = require('express');
-const mongoose = require('mongoose');
 
 const router = require('./routes');
 
-const app = express();
 const PORT = process.env.PORT || 7000;
-
-const DB_URL = `mongodb://localhost:27017/contacts`;
-
-mongoose.connect(DB_URL, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+const app = express();
 
 app.use(express.json());
 
 app.use('/api', router);
+
+
+
+
+app.get('/', (req, res, next) => res.send('Hi'));
 
 app.listen(PORT, () => console.log(`Server works on Port: ${PORT}`));
