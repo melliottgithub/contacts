@@ -1,27 +1,26 @@
 const mongoose = require('mongoose');
-const DB_URL = 'mongodb://localhost:27017/contacts';
+const Config = require('../config');
 
-module.exports = mongoose.connect(DB_URL, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+function connect () {
+  return mongoose.connect(Config.db.url, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true 
+  });
+}
 
-const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', () => {
-  console.log('We are connected on MongoDB');
-});
+// const db = mongoose.connection;
+// db.on('error', console.error.bind(console, 'connection error:'));
+// db.once('open', () => {
+//   console.log('We are connected on MongoDB');
+// });
 
-const userSchema = new mongoose.Schema({ usertId: Number });
-const contactSchema = new mongoose.Schema({ contactId: Number });
-const authSchema = new mongoose.Schema({ authId: Number });
 
-const User = mongoose.model('User', userSchema);
-const Contact = mongoose.model('User', userSchema);
-const Auth = mongoose.model('User', userSchema);
+// const Contact = mongoose.model('Contact', contactSchema);
+// const Auth = mongoose.model('Auth', userSchema);
 
 module.exports = {
-  User,
-  Contact,
-  Auth,
+  connect,
+  // Contact,
+  // Auth,
 };

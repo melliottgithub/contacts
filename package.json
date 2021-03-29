@@ -20,11 +20,14 @@
   "homepage": "https://github.com/melliottgithub/contacts#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
-    "config": "^3.3.6",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "express-validator": "^6.10.0",
+    "graphql-server-express": "^1.4.1",
+    "graphql-tools": "^7.0.4",
+    "joi": "^17.4.0",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.12.1"
+    "mongoose": "^5.12.1",
+    "pg": "^8.5.1"
   },
   "devDependencies": {
     "concurrently": "^6.0.0"
