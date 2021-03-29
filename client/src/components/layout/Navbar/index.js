@@ -1,23 +1,47 @@
 import React from 'react';
 import { string } from 'prop-types';
 import { Link } from 'react-router-dom';
+import { Nav, NavMenu, Title } from './styles';
+
+const navList = [
+  {
+    text: 'About',
+    link: '/about',
+  },
+  {
+    text: 'Home',
+    link: '/',
+  },
+  {
+    text: 'Login',
+    link: '/login',
+  },
+  {
+    text: 'Register',
+    link: '/register',
+  },
+  {
+    text: 'Tracker',
+    link: '/tracker',
+  },
+];
 
 const Navbar = ({ title, icon }) => {
   return (
-    <div>
-      <h1>
+    <Nav>
+      <Title>
         <i className={icon} />
         {title}
-      </h1>
-      <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/about">About</Link>
-        </li>
-      </ul>
-    </div>
+      </Title>
+      <NavMenu>
+        {navList &&
+          navList.map(({ text, link }) => (
+            <li key={link}>
+              <Link to={link}>{text}</Link>
+            </li>
+          ))}
+      </NavMenu>
+    </Nav>
   );
 };
 
