@@ -13,7 +13,7 @@ app.use('/api/contacts', router.contacts);
 app.use('/api/auth', router.auth);
 // app.use('/api/interviews', router.interviews);
 
-app.get('/', (req, res, next) => res.send('Hi'));
+// app.get('/', (req, res, next) => res.send('Hi'));
 
 db.connect().then(conn => console.log('Mongo Connected'));
 pg.connect().then(conn => console.log('Postgres Connected'));

@@ -7,6 +7,9 @@ module.exports = {
     url: process.env.DB_URL,
   },
   dbPg: {
-    connectionString: process.env.PG_CONN_STRING
-  }
+    connectionString: process.env.PG_CONN_STRING,
+  },
+  secret: {
+    key: process.env.SECRET,
+  },
 };
