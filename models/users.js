@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const token = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
 // const Joi = require('joi');
 
 // const validator = Joi.object({
@@ -20,7 +21,6 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
     minLength: 6,
-    maxLength: 13,
   },
   date: {
     type: String,
@@ -35,9 +35,19 @@ module.exports = {
     // const { error } = validator.validate(data);
     // error.isUserError = true;
     // if (error) throw error;
-
+    const { name, email, password } = data;
     try {
-      const user = await User.create(data);
+      let user = await User.findOne({ email });
+
+      if (user) {
+       return console.log({ message: 'User already exists' });
+      }
+      user = new User({ name, email, password });
+      const salt = await bcrypt.genSalt(10);
+      user.password = await bcrypt.hash(password, salt);
+
+      // user = await User.create(data);
+      user = await user.save();
       return this.getDetails(user);
     } catch (err) {
       if (err.name == 'MongoError' && err.code === 11000) {
@@ -52,12 +62,8 @@ module.exports = {
       throw err;
     }
   },
-  async encryptPassword (password) {
-
-  },
-  async authenticate (password) {
-
-  },
+  async encryptPassword(password) {},
+  async authenticate(password) {},
   async getAllUsers(/* pasar la paginations eventualmente */) {
     try {
       const users = await User.find({});
