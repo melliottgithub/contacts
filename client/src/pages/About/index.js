@@ -1,7 +1,16 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 
-const About = (props) => {
+const About = () => {
+  const [result, setResult] = useState();
+
+  useEffect(async () => {
+    const response = await axios('http://192.168.0.3:5000/api/interviews');
+    console.log(response);
+    setResult(response);
+  }, []);
+
   return (
     <div>
       HELLO TEAM<h1>MY new App</h1>

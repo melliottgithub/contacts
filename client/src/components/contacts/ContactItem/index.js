@@ -1,12 +1,19 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useContext } from 'react';
 import { object } from 'prop-types';
+import ContactContext from '../../../context/contact/context';
 
 const ContactItem = ({ contact }) => {
+  const contactContext = useContext(ContactContext);
+  const { deleteContact } = contactContext;
   const { id, name, email, type, phone } = contact;
+
+  const handleOnClick = () => {
+    deleteContact(id);
+  };
   return (
     <Fragment>
       <h3>
-        {name} <span>{type}</span>
+        {name} <span> {type}</span>
       </h3>
       <ul>
         {email && (
@@ -22,7 +29,7 @@ const ContactItem = ({ contact }) => {
       </ul>
       <p>
         <button>Edit</button>
-        <button>Delete</button>
+        <button onClick={handleOnClick}>Delete</button>
       </p>
     </Fragment>
   );

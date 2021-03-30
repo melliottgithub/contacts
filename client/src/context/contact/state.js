@@ -5,12 +5,12 @@ import Reducer from './reducer';
 
 import {
   ADD_CONTACT,
-  DELETE_CONTACT,
-  SET_CURRENT,
   CLEAR_CURRENT,
+  DELETE_CONTACT,
   FILTER_CONTACTS,
   REMOVE_ALERT,
   SET_ALERT,
+  SET_CURRENT,
   UPDATE_CONTACT,
 } from '../types';
 
@@ -50,14 +50,23 @@ const ContactState = ({ children }) => {
   const [state, dispatch] = useReducer(Reducer, initialState);
 
   //add contact
+  const addContact = (contact) => {
+    contact.id = Math.random();
+    dispatch({ type: ADD_CONTACT, payload: contact });
+  };
   //delete contact
+  const deleteContact = (id) => {
+    dispatch({ type: DELETE_CONTACT, payload: id });
+  };
   //set current contact
   //update contact
   //filter contact
   //clear filter
 
   return (
-    <Context.Provider value={{ contacts: state.contacts }}>
+    <Context.Provider
+      value={{ contacts: state.contacts, addContact, deleteContact }}
+    >
       {children}
     </Context.Provider>
   );
