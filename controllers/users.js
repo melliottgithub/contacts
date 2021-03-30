@@ -21,20 +21,15 @@ module.exports = {
           id,
         },
       };
-      jwt.sign(
-        payload,
-        /* secret.key?? */ 'secret',
-        { expiresIn: 36000 },
-        (err, token) => {
-          if (err) {
-            throw err;
-          }
-          return res.json({ token });
+      jwt.sign(payload, secret.key, { expiresIn: 36000 }, (err, token) => {
+        if (err) {
+          throw err;
         }
-      );
+        return res.json({ token });
+      });
 
       // user = await user.save();
-      return users.getDetails(user);
+      // return users.getDetails(user);
     } catch (err) {
       if (err.name == 'MongoError' && err.code === 11000) {
         // duplicated key

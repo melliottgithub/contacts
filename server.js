@@ -11,6 +11,7 @@ app.use(express.json());
 app.use('/api/users', router.users);
 app.use('/api/contacts', router.contacts);
 app.use('/api/auth', router.auth);
+app.use('/api/interviews', router.interviews);
 // app.use('/api/interviews', router.interviews);
 
 // app.get('/', (req, res, next) => res.send('Hi'));

@@ -20,7 +20,7 @@ module.exports = {
       };
       jwt.sign(
         payload,
-        /* secret.key?? */ 'secret',
+        secret.key,
         { expiresIn: 36000 },
         (err, token) => {
           if (err) {
